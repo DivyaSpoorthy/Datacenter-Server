@@ -1,0 +1,57 @@
+<div class="navigation-container" [class.navigation-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="navigation-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="navigation-app-name">Datacenter Server</h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="navigation-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <h1 matSubheader>Shell </h1>
+        <a mat-list-item routerLink="/shell">
+          <mat-icon matListIcon>desktop_mac</mat-icon>
+          <h4 matLine>Terminals</h4>
+        </a>
+        <mat-list-item>
+          <mat-icon matListIcon>folder</mat-icon>
+          <h4 matLine>SFTP</h4>
+        </mat-list-item>
+
+
+
+        <mat-divider></mat-divider>
+        <h1 matSubheader>Monitoring</h1>
+        <mat-list-item>
+          <mat-icon matListIcon>network_check</mat-icon>
+          <h4 matLine>Network</h4>
+        </mat-list-item>
+        <a mat-list-item routerLink="/graphana">
+          <mat-icon matListIcon>developer_board</mat-icon>
+          <h4 matLine>System</h4>
+        </a>
+        <mat-list-item>
+          <mat-icon matListIcon>wb_sunny</mat-icon>
+          <h4 matLine>Environment</h4>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <h1 matSubheader>Alerts</h1>
+        <mat-list-item>
+          <mat-icon matListIcon>info</mat-icon>
+          <h4 matLine>Details</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>history</mat-icon>
+          <h4 matLine>History</h4>
+        </mat-list-item>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
