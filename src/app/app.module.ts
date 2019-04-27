@@ -10,7 +10,8 @@ import {MatButtonModule, MatExpansionModule, MatIconModule, MatListModule, MatSi
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InfraComponent } from './infra/infra.component';
-
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { InfraComponent } from './infra/infra.component';
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, ViewChild} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {MatSidenav} from '@angular/material';
 
 @Component({
   selector: 'app-navigation',
@@ -8,6 +9,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 })
 export class NavigationComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
+  @ViewChild('snav') snav: MatSidenav;
 
   private _mobileQueryListener: () => void;
 

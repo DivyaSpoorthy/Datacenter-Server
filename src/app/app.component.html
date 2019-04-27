@@ -1,17 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="nav-component"
-     fxLayout="row"
-     fxLayout.xs="column"
-     fxLayoutAlign="center"
-     >
-     <app-navigation></app-navigation>
+<base href="/">
+
+<app-navigation></app-navigation>
+<div class="content" fxLayout="column">
+  <router-outlet></router-outlet>
 </div>
 
-<div class="component"
-  fxLayout="row"
-  fxLayout.xs="column"
-  fxLayoutAlign="center">
-  <app-infra></app-infra>
-</div>
 
-<router-outlet></router-outlet>
