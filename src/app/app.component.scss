@@ -55,3 +55,13 @@ h1.navigation-app-name {
   right: 0;
   z-index: 2000;
 }
+
+.collapsed-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+}

@@ -3,7 +3,7 @@
 
 <div class="navigation-container" [class.navigation-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="navigation-toolbar">
-    <button mat-icon-button (click)="snav.toggle()">
+    <button mat-icon-button (click)="toggleNav()">
       <mat-icon>menu</mat-icon>
     </button>
     <h1 class="navigation-app-name">Datacenter Server</h1>
@@ -14,7 +14,7 @@
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <h1 matSubheader>Infrastructure </h1>
-        <a mat-list-item routerLink="/infra">
+        <a mat-list-item href="/infra">
           <mat-icon matListIcon>storage</mat-icon>
           <h4 matLine>Dashboard</h4>
         </a>
@@ -69,8 +69,11 @@
   </mat-sidenav-container>
 </div>
 
+<div *ngIf="!opened" class="content">
+  <router-outlet></router-outlet>
+</div>
 
-<div class="content">
+<div *ngIf="opened" class="collapsed-content">
   <router-outlet></router-outlet>
 </div>
 

@@ -18,9 +18,10 @@ import {MediaMatcher} from "@angular/cdk/layout";
 })
 export class AppComponent implements OnDestroy {
   title = 'DataCenter-server';
-
-  mobileQuery: MediaQueryList;
   @ViewChild('snav') snav: MatSidenav;
+  mobileQuery: MediaQueryList;
+  opened = true;
+  changeDetector: ChangeDetectorRef;
 
   private _mobileQueryListener: () => void;
 
@@ -29,9 +30,16 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.changeDetector = changeDetectorRef;
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  toggleNav() {
+    this.snav.toggle();
+    this.opened = ! this.opened;
+    this.changeDetector.detectChanges();
   }
 }
