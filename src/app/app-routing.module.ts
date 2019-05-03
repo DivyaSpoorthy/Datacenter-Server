@@ -6,7 +6,7 @@ import {InfraDataComponent} from './infra-data/infra-data.component';
 const routes: Routes = [ {
   path: 'infra' , component: InfraComponent
 }, {
-  path: 'infrastats', component: InfraDataComponent
+  path: 'infrastats/:name', component: InfraDataComponent
 }
 ];
 

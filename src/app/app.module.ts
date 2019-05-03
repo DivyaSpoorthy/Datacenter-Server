@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import {
   MatButtonModule,
   MatExpansionModule,
-  MatIconModule,
-  MatListModule,
+  MatIconModule, MatInputModule,
+  MatListModule, MatProgressBarModule, MatRippleModule,
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule
@@ -20,6 +20,7 @@ import { InfraComponent } from './infra/infra.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { InfraDataComponent } from './infra-data/infra-data.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,11 @@ import { InfraDataComponent } from './infra-data/infra-data.component';
     MatExpansionModule,
     MatCardModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule,
+    FormsModule,
+    MatRippleModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

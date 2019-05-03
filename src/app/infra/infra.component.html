@@ -1,6 +1,6 @@
 <mat-grid-list cols="8" rowHeight="30px" [gutterSize]="'20px'">
-    <mat-grid-tile (mouseover)="highlight(tile)" (mouseleave)="selectedColor = ''"  routerLink="/infrastats"
-      *ngFor="let tile of tiles"
+    <mat-grid-tile (mouseover)="highlight(tile)" (mouseleave)="selectedColor = ''"
+      *ngFor="let tile of tiles" [routerLink]="['/infrastats', tile.text]"
       [colspan]="tile.cols"
     [rowspan]="tile.rows"
        [style.background]="tile.color" [ngStyle]="tile.color === selectedColor && {'border-style': 'solid'}"
@@ -8,4 +8,3 @@
       {{tile.text}}
     </mat-grid-tile>
 </mat-grid-list>
-

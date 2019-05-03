@@ -1,3 +1,15 @@
+<div fxLayout="row">
+  <div fxFlex="40" fxLayoutAlign="end">
+    <button mat-stroked-button (click)="editMode(true)">
+      <mat-icon matListIcon>edit</mat-icon>
+      Edit
+    </button>
+    <button mat-stroked-button (click)="editMode(false)">
+      <mat-icon matListIcon>check</mat-icon>
+      Save
+    </button>
+  </div>
+</div>
 <div fxLayout="row" fxLayoutGap="20px">
   <div fxLayout="column" fxLayoutAlign="center" fxFlex="40">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -7,65 +19,106 @@
 
       <!-- Position Column -->
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <th mat-header-cell *matHeaderCellDef> No.</th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <th mat-header-cell *matHeaderCellDef> Server Rack</th>
+        <td mat-cell *matCellDef="let element" (click)="updateCurrentDevice(element.position)" matRipple>
+          <span *ngIf="edit">
+            <mat-form-field>
+              <input matInput (ngModelChange)="updateSpace()" placeholder="(device name)"
+                     [(ngModel)]="dataSource[element.position - 1].name" [value]="element.name">
+            </mat-form-field>
+          </span>
+          <span *ngIf="!edit">
+             {{element.name}}
+           </span>
+        </td>
       </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-  <div fxLayout="column" fxLayoutAlign="center" fxFlex="40">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-      <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+  <div fxLayout="column" fxFlex="40">
+    <div fxFlex="50">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Cabinet Statistics</mat-card-title>
+          <mat-card-subtitle>Physical Infrastructure</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item><span style="font-weight: bold">&nbsp;&nbsp;Space:&nbsp;&nbsp;</span>
+              <span>{{cabinetInfo.space}}%&nbsp;&nbsp;</span>
+              <mat-progress-bar mode="determinate" [value]="cabinetInfo.space"></mat-progress-bar>
+            </mat-list-item>
+            <mat-list-item><span style="font-weight: bold">&nbsp;&nbsp;Weight:&nbsp;&nbsp;</span>{{cabinetInfo.weight}}
+              kg&nbsp;&nbsp;
+            </mat-list-item>
+            <mat-list-item><span
+              style="font-weight: bold">&nbsp;&nbsp;Power:&nbsp;&nbsp;</span><span>{{cabinetInfo.power}}
+              Wts&nbsp;&nbsp;</span>
+              <mat-progress-bar mode="determinate" [value]="currentwts"></mat-progress-bar>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="50">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Device Statistics</mat-card-title>
+          <mat-card-subtitle>Physical Infrastructure</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <div *ngIf="edit">
+              <mat-list-item>
+              <mat-form-field>
+                <input matInput [(ngModel)]="dataSource[cdevice].name" placeholder="name" value="dataSource[cdevice].name">
+              </mat-form-field>
+              </mat-list-item>
+              <mat-list-item>
+              <mat-form-field>
+                <input matInput [(ngModel)]="dataSource[cdevice].type" placeholder="type" value="dataSource[cdevice].type">
+              </mat-form-field>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-form-field>
+                <input matInput [(ngModel)]="dataSource[cdevice].height" placeholder="height" value="dataSource[cdevice].height">
+                </mat-form-field>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="dataSource[cdevice].position" placeholder="position" value="dataSource[cdevice].position">
+                </mat-form-field>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-form-field>
+                <input matInput [(ngModel)]="dataSource[cdevice].cpu" placeholder="CPU" value="dataSource[cdevice].cpu">
+                </mat-form-field>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-form-field>
+                <input matInput [(ngModel)]="dataSource[cdevice].gpu" placeholder="GPU" value="dataSource[cdevice].gpu">
+                </mat-form-field>
+              </mat-list-item>
+            </div>
+            <div *ngIf="!edit">
+              <mat-list-item><span style="font-weight: bold">&nbsp;&nbsp;Device Type:&nbsp;&nbsp;</span> <span>{{dataSource[cdevice].name}}</span></mat-list-item>
+              <mat-list-item><span style="font-weight: bold">&nbsp;&nbsp;Device Type:&nbsp;&nbsp;</span><span>{{dataSource[cdevice].type}}</span></mat-list-item>
+              <mat-list-item><span style="font-weight: bold">&nbsp;&nbsp;Device Height:&nbsp;&nbsp;</span><span>{{dataSource[cdevice].height}}</span></mat-list-item>
+              <mat-list-item><span style="font-weight: bold">&nbsp;&nbsp;Device Position:&nbsp;&nbsp;</span><span>{{dataSource[cdevice].position}}</span></mat-list-item>
+              <mat-list-item><span style="font-weight: bold">&nbsp;&nbsp;Device CPU:&nbsp;&nbsp;</span><span>{{dataSource[cdevice].cpu}}</span></mat-list-item>
+              <mat-list-item><span style="font-weight: bold">&nbsp;&nbsp;Device GPU:&nbsp;&nbsp;</span><span>{{dataSource[cdevice].gpu}}</span></mat-list-item>
+            </div>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>
 
