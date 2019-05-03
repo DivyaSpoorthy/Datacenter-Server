@@ -1,10 +1,11 @@
-<mat-grid-list cols="8" rowHeight="50px" [gutterSize]="'30px'">
-  <mat-grid-tile
-    *ngFor="let tile of tiles"
-    [colspan]="tile.cols"
+<mat-grid-list cols="8" rowHeight="30px" [gutterSize]="'20px'">
+    <mat-grid-tile (mouseover)="highlight(tile)" (mouseleave)="selectedColor = ''"  routerLink="/infrastats"
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
     [rowspan]="tile.rows"
-    [style.background]="tile.color">
-    {{tile.text}}
-  </mat-grid-tile>
+       [style.background]="tile.color" [ngStyle]="tile.color === selectedColor && {'border-style': 'solid'}"
+      >
+      {{tile.text}}
+    </mat-grid-tile>
 </mat-grid-list>
 

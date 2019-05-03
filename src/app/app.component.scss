@@ -65,3 +65,7 @@ h1.navigation-app-name {
   right: 0;
   z-index: 2000;
 }
+
+mat-grid-list.infra-grid:hover {
+  background: lightgray;
+}
