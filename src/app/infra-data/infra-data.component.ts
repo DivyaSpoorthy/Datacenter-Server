@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Tile} from "../infra/infra.component";
 
@@ -11,7 +11,7 @@ export interface Device {
   height: string;
 }
 
-export interface  StatData {
+export interface StatData {
   ID: string;
   desc: string;
   Voltage: number;
@@ -40,6 +40,7 @@ export class InfraDataComponent implements OnInit {
   totalcount: number;
   totalWts: number;
   currentwts: number;
+
   constructor(
     route: ActivatedRoute
   ) {
@@ -70,10 +71,24 @@ export class InfraDataComponent implements OnInit {
 
   ngOnInit() {
     this.cname = this.route.snapshot.paramMap.get('name');
-    this.dataSource = new Array<Device>(this.totalcount).fill({name: 'asd', position: 2, cpu: 'Intel Core i5', gpu: 'Nvidia GTX 950M', height: '25cm', type: 'server'});
+    this.dataSource = new Array<Device>(this.totalcount).fill({
+      name: 'asd',
+      position: 2,
+      cpu: 'Intel Core i5',
+      gpu: 'Nvidia GTX 950M',
+      height: '25cm',
+      type: 'server'
+    });
 
-    for(let i in this.dataSource) {
-      this.dataSource[i] = {name: '', position: (+i + 1), cpu: 'Intel Core i5', gpu: 'Nvidia GTX 950M', height: '25cm', type: 'server'};
+    for (let i in this.dataSource) {
+      this.dataSource[i] = {
+        name: '',
+        position: (+i + 1),
+        cpu: 'Intel Core i5',
+        gpu: 'Nvidia GTX 950M',
+        height: '25cm',
+        type: 'server'
+      };
     }
     console.log(this.dataSource);
   }
@@ -91,7 +106,7 @@ export class InfraDataComponent implements OnInit {
       }
     }
     this.cabinetInfo.space = Math.floor((count * 100) / this.totalcount);
-    this.currentwts = Math.floor(this.cabinetInfo.power * 100  / this.totalWts);
+    this.currentwts = Math.floor(this.cabinetInfo.power * 100 / this.totalWts);
   }
 
   updateCurrentDevice(index) {

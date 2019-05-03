@@ -21,12 +21,16 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { InfraDataComponent } from './infra-data/infra-data.component';
 import {FormsModule} from '@angular/forms';
+import { AlertsComponent } from './alerts/alerts.component';
+import { CctvComponent } from './cctv/cctv.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InfraComponent,
     InfraDataComponent,
+    AlertsComponent,
+    CctvComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -50,4 +54,5 @@ import {FormsModule} from '@angular/forms';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

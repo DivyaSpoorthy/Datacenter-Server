@@ -21,7 +21,7 @@ export class InfraComponent {
     {text: 'AIMS', cols: 1, rows: 8, color: 'lightpink'},
     {text: 'Power/Backup', cols: 5, rows: 5, color: '#DDBDF1'},
     {text: 'News Lab', cols: 2, rows: 5, color: '#EF0045'},
-    {text: 'CCTV', cols: 4, rows: 6, color: '#fffdaf'},
+    {text: 'ISAC', cols: 4, rows: 6, color: '#fffdaf'},
     {text: 'AI', cols: 2, rows: 5, color: '#ffd27f'},
     {text: 'Civil/Chemical', cols: 7, rows: 2, color: '#00c2c7'},
   ];
